@@ -34,3 +34,28 @@ describe("When rendering SummaryForm", () => {
     });
   });
 });
+
+describe("When rendering a popover", () => {
+  it("appears on mouseover of checkbox label and disappears on mouse out", async () => {
+    render(<SummaryForm />);
+
+    // query expects element not to be in the DOM
+    const hiddenpopover = screen.queryByText(
+      "No ice cream will actually be delivered"
+    );
+
+    // check it's not
+    expect(hiddenpopover).not.toBeInTheDocument();
+
+    // hover on label first
+    const label = screen.getByText("Terms and Conditions");
+    await userEvent.hover(label);
+
+    // and then get expects popover to be in the DOM
+    const popover = screen.getByText("No ice cream will actually be delivered");
+    expect(popover).toBeInTheDocument();
+
+    await userEvent.unhover(label);
+    expect(popover).not.toBeInTheDocument();
+  });
+});
