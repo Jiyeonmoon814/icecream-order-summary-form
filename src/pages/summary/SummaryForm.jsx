@@ -14,7 +14,7 @@ export const SummaryForm = () => {
     <span>
       I agree to
       <OverlayTrigger placement="right" overlay={popover}>
-        <sapn style={{ color: "blue" }}>Terms and Conditions</sapn>
+        <span style={{ color: "blue" }}>Terms and Conditions</span>
       </OverlayTrigger>
     </span>
   );
